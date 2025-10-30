@@ -1,22 +1,25 @@
-import Card from "./Card";
+//import Card from "../Card";
+import Participant from "./Participant";
 
-export default class Player {
+export default class Player extends Participant {
     
     private name: string;
-    private hands: Card[] = [] ;
-    private totalMoney: number = 500;
+    private totalMoney: number;;
 
-    public constructor (name: string){
+    public constructor (name: string, startingBudget: number = 500){
+        super();
         this.name = name;
+        this.totalMoney = startingBudget;
     }
     
     public getName = () => {
         return this.name;
     }
 
-    public fillHand = (card: Card) => {
-        this.hands.push(card);
+    public getBalance() {
+        return this.totalMoney;
     }
+
 
     public placeBet = (bet: number) => {
         if(bet <= this.totalMoney){
@@ -30,4 +33,5 @@ export default class Player {
         this.totalMoney += gain;
     }
 
+    
 }
