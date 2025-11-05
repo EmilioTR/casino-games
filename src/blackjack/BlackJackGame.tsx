@@ -5,6 +5,7 @@ import Deck from "@/blackjack/classes/Deck";
 //import Card from "@/blackjack/classes/Card";
 import Player from './classes/participants/Player';
 import DealerAI from './classes/participants/DealerAI';
+import StartScreen from './components/StartScreen';
 
 
 
@@ -14,18 +15,33 @@ export default function BlackJackGame() {
     const [deck, setDeck] = useState<Deck>(new Deck());
     const [players, setPlayers] = useState<Player[]>([]);
 
-    const [newPlayername, setNewPlayername] = useState("New Player");
+    
+
+    const [gameStarted, setGameStarted] = useState<boolean>(false);
 
     const addPlayer = (name: string) => {
-        setPlayers((prevPlayers) => [...prevPlayers, new Player(name)]);
-        setNewPlayername("");
+        if (!name || name.trim() === "") { 
+            alert("Fill in a valid name.")
+        } else {
+          //  if(players.some(player => player.getName === name))
+            setPlayers((prevPlayers) => [...prevPlayers, new Player(name)]);
+        
+        }
     }
 
-    const newGame = () => {
-        setDeck(new Deck());
-        initHands(players, new DealerAI);
+    const resetGame = () => {
+        setGameStarted(false);
+    }
 
-        console.log(players);
+    const startGame = () => {
+        if (players.length != 0) {
+            setDeck(new Deck());
+            initHands(players, new DealerAI);
+            setGameStarted(true);
+            console.log(players);
+        } else {
+            alert("At least one player required to play!")
+        }
     }
 
     const initHands = (players: Player[], dealer: DealerAI, count: number = 1) => {
@@ -55,23 +71,15 @@ export default function BlackJackGame() {
 
             </div>
 
-            <div>
-                <div className='flex flex-row gap-5' >
-                    <input
-                        type="text"
-                        value={newPlayername}
-                        onChange={(e) => setNewPlayername(e.target.value)}
-                        placeholder="Enter player name"
-                        className="border rounded-xl p-2 text-base focus:outline-none focus:ring-2 focus:ring-gray-200"
-                    />
-                    <button onClick={() => addPlayer(newPlayername)}
-                        className='bg-amber-900 p-3 rounded-xl hover:bg-amber-950'> add new player</button>
+            {gameStarted ?
+            // gameScreen component maken
+                <div>
+                    <button onClick={resetGame} className='bg-amber-900 p-3 rounded-xl hover:bg-amber-950' > New Game </button>
                 </div>
-
-
-                <button onClick={newGame} >play</button>
-            </div>
-
+:
+                <StartScreen {...{ startGame, addPlayer}} />
+                
+            }
 
         </div>
     );
