@@ -61,7 +61,7 @@ export default function BlackJackGame() {
            
             {
                 gameStarted ?
-                    <GameScreen {...{ resetGame }} />
+                    <GameScreen {...{ players, resetGame }} />
                     :
                     <StartScreen {...{ startGame, addPlayer, players }} />
             }
