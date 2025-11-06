@@ -1,27 +1,14 @@
-'use client'
-import Deck from "@/blackjack/classes/Deck";
-import Card from "@/blackjack/classes/Card";
 import BlackJackGame from "@/blackjack/BlackJackGame";
-
-
-
-// const game = () => {
-//     const deck : Deck = new Deck();
-//     console.log(deck)
-
-//     const card1 : Card = deck.getCard();
-//     const card2 : Card = deck. getCard(); 
-    
-//     console.log(`Hand: ${card1.cardToString()} , ${card2.cardToString()} `);
-// }
-
 
 export default function Home() {
   return (
-    <div>
-     
-     <BlackJackGame/>
-
+    <div className="h-screen w-screen flex flex-col bg-[url('/images/blackjackbg.jpeg')] bg-cover bg-center">
+      <div className="flex w-full justify-center mt-10 ">
+        <h1 className='text-3xl font-bold text-green-750 bg-green-950 rounded-2xl p-4 border-2 border-green-750'>BlackJack</h1>
+      </div>
+      <div className="flex flex-col justify-center items-center w-full">
+        <BlackJackGame />
+      </div>
     </div>
   );
 }
