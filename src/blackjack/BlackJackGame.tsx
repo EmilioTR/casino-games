@@ -13,11 +13,8 @@ import GameScreen from './components/GameScreen';
 
 export default function BlackJackGame() {
 
-    const [deck, setDeck] = useState<Deck>(new Deck());
+    
     const [players, setPlayers] = useState<Player[]>([]);
-
-
-
     const [gameStarted, setGameStarted] = useState<boolean>(false);
 
     const addPlayer = (name: string) => {
@@ -30,14 +27,16 @@ export default function BlackJackGame() {
         }
     }
 
+    const removePlayer = (index: number) => {
+        setPlayers((prevPlayers) => prevPlayers.filter((_, i) => i !== index));
+    }
+
     const resetGame = () => {
         setGameStarted(false);
     }
 
     const startGame = () => {
         if (players.length != 0) {
-            setDeck(new Deck());
-            initHands(players, new DealerAI);
             setGameStarted(true);
             console.log(players);
         } else {
@@ -45,15 +44,7 @@ export default function BlackJackGame() {
         }
     }
 
-    const initHands = (players: Player[], dealer: DealerAI, count: number = 1) => {
-        for (const player of players) {
-            player.addCardToHand(deck.getCard());
-        }
-
-        dealer.addCardToHand(deck.getCard());
-
-        if (count === 1) { initHands(players, dealer, 2) };
-    }
+    
 
 
     return (
@@ -61,9 +52,9 @@ export default function BlackJackGame() {
            
             {
                 gameStarted ?
-                    <GameScreen {...{ players, resetGame }} />
+                    <GameScreen {...{ players, resetGame}} />
                     :
-                    <StartScreen {...{ startGame, addPlayer, players }} />
+                    <StartScreen {...{ startGame, addPlayer, players, removePlayer}} />
             }
 
         </div>

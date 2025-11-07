@@ -16,4 +16,16 @@ export default class Participant {
         return this.hands
     }
 
+    public handsToString = () => {
+        let outpt = "";
+        this.hands.forEach((card, index) => {    
+            outpt += card.cardToString();
+            if (index < this.hands.length - 1) {
+                outpt += " - "
+            }
+        });
+
+        return outpt;
+    }
+
 }
