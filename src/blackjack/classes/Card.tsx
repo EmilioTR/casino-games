@@ -23,4 +23,9 @@ export default class Card {
         } 
         return `${value}`;
     }
+
+    public getCardImageCode = () => {
+        console.log(`aaa ${this.suit}${this.value}.png`)
+        return `${this.suit}${this.value}.png`
+    }
 }

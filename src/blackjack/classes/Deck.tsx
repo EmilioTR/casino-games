@@ -13,7 +13,8 @@ export default class Deck {
 
     public generateDeck() : Card[] {
         const deck : Card[] = [];
-        const suits: string[] = ["♠","♣","♦","♥"];
+       // const suits: string[] = ["♠","♣","♦","♥"];
+        const suits: string[] = ["S","C","D","H"];
         const numbers: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
 
         for (const suit of suits) {

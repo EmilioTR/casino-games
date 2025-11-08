@@ -1,19 +1,12 @@
 'use client'
-import { useState, useEffect } from 'react';
-//import Image from "next/image";
-import Deck from "@/blackjack/classes/Deck";
-//import Card from "@/blackjack/classes/Card";
+import { useState } from 'react';
 import Player from './classes/participants/Player';
-import DealerAI from './classes/participants/DealerAI';
 import StartScreen from './components/StartScreen';
 import GameScreen from './components/GameScreen';
 
-
-
-
 export default function BlackJackGame() {
 
-    
+
     const [players, setPlayers] = useState<Player[]>([]);
     const [gameStarted, setGameStarted] = useState<boolean>(false);
 
@@ -44,17 +37,15 @@ export default function BlackJackGame() {
         }
     }
 
-    
-
 
     return (
         <div className='p-10'>
-           
+
             {
                 gameStarted ?
-                    <GameScreen {...{ players, resetGame}} />
+                    <GameScreen {...{ players, resetGame }} />
                     :
-                    <StartScreen {...{ startGame, addPlayer, players, removePlayer}} />
+                    <StartScreen {...{ startGame, addPlayer, players, removePlayer }} />
             }
 
         </div>
