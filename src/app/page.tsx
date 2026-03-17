@@ -1,4 +1,4 @@
-import BlackJackGame from "@/blackjack/BlackJackGame";
+import BlackJackGame from "@/games/blackjack/BlackJackGame";
 
 export default function Home() {
   return (
