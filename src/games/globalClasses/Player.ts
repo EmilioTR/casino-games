@@ -1,13 +1,8 @@
-//import Card from "../Card";
-import Participant from "./Participant";
-
-export default class Player extends Participant {
-    
+export default class Player {
     private name: string;
     private totalMoney: number;
 
     public constructor (name: string, startingBudget: number = 500){
-        super();
         this.name = name;
         this.totalMoney = startingBudget;
     }
@@ -33,5 +28,4 @@ export default class Player extends Participant {
         this.totalMoney += gain;
     }
 
-    
 }

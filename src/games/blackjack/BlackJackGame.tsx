@@ -3,6 +3,7 @@ import { useState } from 'react';
 import StartScreen from './components/StartScreen';
 import GameScreen from './components/GameScreen';
 import { CasinoProvider } from '@/context/CasinoContext';
+import BlackjackParticipant from './classes/participants/BlackjackParticipant';
 
 export default function BlackJackGame() {
     const [gameStarted, setGameStarted] = useState<boolean>(false);
@@ -11,7 +12,7 @@ export default function BlackJackGame() {
     const startGame = () => setGameStarted(true);
 
     return (
-        <CasinoProvider>
+        <CasinoProvider createPlayer={(name) => new BlackjackParticipant(name)}>
             <div className='p-10'>
                 {gameStarted
                     ? <GameScreen resetGame={resetGame} />

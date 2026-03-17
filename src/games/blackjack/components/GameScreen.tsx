@@ -1,16 +1,16 @@
 import { useEffect, useRef, useState } from "react";
 import { useCasino } from "@/context/CasinoContext"; 
 import Deck from "../classes/Deck";
-import DealerAI from "../classes/DealerAI"; 
+import DealerAI from "../classes/participants/DealerAI"; 
 import Image from "next/image";
-import Participant from "@/games/globalClasses/Participant"; 
+import BlackjackParticipant from "../classes/participants/BlackjackParticipant";
 
 type GameScreenProps = {
     resetGame: () => void;
 }
 
 export default function GameScreen({ resetGame }: GameScreenProps) {
-    const { playersRef, redraw } = useCasino();
+    const { playersRef, redraw } = useCasino<BlackjackParticipant>();
     const players = playersRef.current;
 
     const deckRef = useRef<Deck>(new Deck());
@@ -90,7 +90,7 @@ export default function GameScreen({ resetGame }: GameScreenProps) {
     );
 }
 
-function DisplayPlayCard({ person }: { person: Participant }) {
+function DisplayPlayCard({ person }: { person: BlackjackParticipant }) {
     return (
         <div className="flex flex-row gap-1">
             {person.getHand().map((card, index) => (

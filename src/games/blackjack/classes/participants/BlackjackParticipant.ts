@@ -1,6 +1,7 @@
-import Card from "../blackjack/classes/Card"; 
+import Card from "../Card"; 
+import Player from "@/games/globalClasses/Player";
 
-export default class Participant {
+export default class BlackjackParticipant extends Player {
     protected hand: Card[] = [];
 
     public addCardToHand = (card: Card) => {
@@ -27,7 +28,5 @@ export default class Participant {
 
         return outpt;
     }
-
-    
 
 }
