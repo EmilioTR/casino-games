@@ -1,11 +1,20 @@
+import Deck from "../Deck";
 import BlackjackParticipant from "./BlackjackParticipant";
 
 export default class DealerAI extends BlackjackParticipant {
-    constructor() {
-        super("Dealer");
+    constructor(playerCount: number) {
+        super("Dealer", 2000 * playerCount);
     }
-   // private hands: Card[] = []; en kaarten pakken worden inherit
 
+    public playTurn = (deck: Deck): void => {
+        while (this.getHandValue() < 17) {
+            this.addCardToHand(deck.getCard());
+        }
 
-    // dealer AI logic incoming
+        if (this.getHandValue() >= 17 && this.getHandValue() <= 19) {
+            if (Math.random() < 1 / 5) {
+                this.addCardToHand(deck.getCard());
+            }
+        }
+    }
 }
