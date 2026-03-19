@@ -1,8 +1,10 @@
 import BlackJackGame from "@/games/blackjack/BlackJackGame";
 
+import PlinkoGame from "@/games/plinkoballs/PlinkoGame";
+import ToggleGameButton from "@/games/globalClasses/ToggleGameButton";
 export default function Home() {
   return (
-    <div className="min-h-screen w-screen flex flex-col items-center bg-[url('/images/blackjackbg.jpeg')] bg-cover bg-center">
+    <div className="min-h-screen w-screen flex flex-col items-center bg-[url('/images/blackjackbg.jpeg')] bg-cover bg-center bg-fixed">
 
       {/* Dark overlay to deepen the background */}
       <div className="fixed inset-0 bg-black/60 pointer-events-none" />
@@ -24,11 +26,16 @@ export default function Home() {
         </div>
 
         {/* Game */}
-        <BlackJackGame />
+
+        <ToggleGameButton/>
+        {/* <BlackJackGame />
+
+
+        <PlinkoGame/> */}
 
         {/* Footer */}
         <p className="text-zinc-600 text-xs tracking-widest uppercase pb-4">
-          For personal use only · No real money involved
+          For gambling use only · No real money involved but a hell lot of fun!
         </p>
 
       </div>
