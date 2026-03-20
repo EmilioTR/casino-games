@@ -14,14 +14,14 @@ interface Ball {
   landedSlot: number;
 }
 
-const CANVAS_W = 560;
+const CANVAS_W = 650;
 const CANVAS_H = 600;
-const ROWS = 14;
+const ROWS = 17;
 const PEG_RADIUS = 5;
 const BALL_RADIUS = 9;
 const GRAVITY = 0.28;
 const BOUNCINESS = 0.42;
-const MULTIPLIERS = [10, 5, 2, 1.8, 1, 0.8, 0.3, 0.1, 0.3, 0.8, 1, 1.8, 2, 5, 10];
+const MULTIPLIERS = [100,10, 5, 2, 1.8, 1.2, 1, 0.3, 0.1, 0.3, 1, 1.2, 1.8, 2, 5, 10,100];
 const SLOT_COUNT = MULTIPLIERS.length;
 const SLOT_W = CANVAS_W / SLOT_COUNT;
 const SLOT_Y = CANVAS_H - 80;
@@ -42,7 +42,7 @@ function getSlotStyle(index: number) {
 
 function buildPegs() {
   const pegs: { x: number; y: number }[] = [];
-  const TOP_PAD = 60, BOT_PAD = 82;
+  const TOP_PAD = 60, BOT_PAD = 80;
   const rowSpacing = (CANVAS_H - TOP_PAD - BOT_PAD) / (ROWS - 1);
   for (let row = 0; row < ROWS; row++) {
     const count = row + 3;
@@ -221,10 +221,10 @@ export default function PlinkoGame() {
   };
 
   const chips = [
-    { val:10, cls:'from-green-400 via-green-700 to-[#0a2e10] border-green-400' },
-    { val:50, cls:'from-blue-300 via-blue-600 to-[#0d1f3c] border-blue-400' },
-    { val:100, cls:'from-yellow-200 via-yellow-500 to-[#3d2a00] border-yellow-400' },
-    { val:200, cls:'from-orange-200 via-red-700 to-[#6b1a1a] border-red-400' },
+    { val: 10,  bg: '#3a3a3a', light: '#525252', border: '#a1a1aa', text: '#a1a1aa' },
+    { val: 50,  bg: '#1a5c2a', light: '#166534', border: '#4ade80', text: '#4ade80' },
+    { val: 100, bg: '#1e3a6e', light: '#1e40af', border: '#60a5fa', text: '#60a5fa' },
+    { val: 200, bg: '#6b4c00', light: '#92400e', border: '#fbbf24', text: '#fbbf24' },
   ];
 
   return (
@@ -258,15 +258,19 @@ export default function PlinkoGame() {
           </div>
 
           <div className="grid grid-cols-2 gap-1.5">
-            {chips.map(({val,cls}) => (
-              <button key={val} onClick={()=>setBetAmount(val)}
-                className={`rounded-full border-[3px] border-dashed bg-gradient-to-br ${cls} text-white text-xs font-semibold py-2 hover:-translate-y-0.5 active:scale-95 transition-transform`}>
+            {chips.map(({ val, bg, light, border, text }) => (
+              <button key={val} onClick={() => setBetAmount(val)}
+                className="relative rounded-full border-[3px] border-dashed w-12 h-12 flex items-center justify-center text-xs font-semibold tracking-wide hover:-translate-y-1 active:scale-95 transition-all duration-150 shadow-[0_4px_12px_rgba(0,0,0,0.5),inset_0_1px_1px_rgba(255,255,255,0.1)] mx-auto"
+                style={{ background: `radial-gradient(circle at 35% 35%, ${light}, ${bg} 60%)`, borderColor: border, color: text }}>
+                <span className="absolute inset-1.5 rounded-full border border-white/10 pointer-events-none" />
                 ${val}
               </button>
             ))}
           </div>
-          <button onClick={()=>setBetAmount(balance)}
-            className="rounded-full border-[3px] border-dashed border-red-400 bg-gradient-to-br from-red-300 via-red-700 to-[#6b1a1a] text-white text-xs font-semibold py-1.5 hover:-translate-y-0.5 active:scale-95 transition-transform">
+          <button onClick={() => setBetAmount(balance)}
+            className="relative rounded-full border-[3px] border-dashed w-12 h-12 flex items-center justify-center text-xs font-semibold tracking-wide hover:-translate-y-1 active:scale-95 transition-all duration-150 shadow-[0_4px_12px_rgba(0,0,0,0.5),inset_0_1px_1px_rgba(255,255,255,0.1)] mx-auto"
+            style={{ background: 'radial-gradient(circle at 35% 35%, #991b1b, #6b1a1a 60%)', borderColor: '#f87171', color: '#f87171' }}>
+            <span className="absolute inset-1.5 rounded-full border border-white/10 pointer-events-none" />
             MAX
           </button>
 
