@@ -14,14 +14,14 @@ interface Ball {
   landedSlot: number;
 }
 
-const CANVAS_W = 650;
+const CANVAS_W = 620;
 const CANVAS_H = 600;
-const ROWS = 17;
+const ROWS = 16;
 const PEG_RADIUS = 5;
 const BALL_RADIUS = 9;
 const GRAVITY = 0.28;
 const BOUNCINESS = 0.42;
-const MULTIPLIERS = [100,10, 5, 2, 1.8, 1.2, 1, 0.3, 0.1, 0.3, 1, 1.2, 1.8, 2, 5, 10,100];
+const MULTIPLIERS = [10,5,2,1.8, 1.2, 1, 0.3, 0.1, 0.3, 1, 1.2, 1.8,2,5,10];
 const SLOT_COUNT = MULTIPLIERS.length;
 const SLOT_W = CANVAS_W / SLOT_COUNT;
 const SLOT_Y = CANVAS_H - 80;
@@ -42,7 +42,7 @@ function getSlotStyle(index: number) {
 
 function buildPegs() {
   const pegs: { x: number; y: number }[] = [];
-  const TOP_PAD = 60, BOT_PAD = 80;
+  const TOP_PAD = 40, BOT_PAD = 90;
   const rowSpacing = (CANVAS_H - TOP_PAD - BOT_PAD) / (ROWS - 1);
   for (let row = 0; row < ROWS; row++) {
     const count = row + 3;
