@@ -2,6 +2,7 @@ import BlackJackGame from "@/games/blackjack/BlackJackGame";
 
 import PlinkoGame from "@/games/plinkoballs/PlinkoGame";
 import ToggleGameButton from "@/games/globalClasses/ToggleGameButton";
+import ChickenCross from "@/games/CrossTheRoad/ChickenCross";
 export default function Home() {
   return (
     <div className="min-h-screen w-screen flex flex-col items-center bg-[url('/images/blackjackbg.jpeg')] bg-cover bg-center bg-fixed">
@@ -26,6 +27,8 @@ export default function Home() {
         </div>
 
         {/* Game */}
+
+        <ChickenCross/>
 
         <ToggleGameButton/>
         {/* <BlackJackGame />
