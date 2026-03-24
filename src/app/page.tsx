@@ -1,8 +1,7 @@
-import BlackJackGame from "@/games/blackjack/BlackJackGame";
 
-import PlinkoGame from "@/games/plinkoballs/PlinkoGame";
 import ToggleGameButton from "@/games/globalClasses/ToggleGameButton";
-import ChickenCross from "@/games/CrossTheRoad/ChickenCross";
+import SlotMachine from "@/games/slots/Slotmachine";
+
 export default function Home() {
   return (
     <div className="min-h-screen w-screen flex flex-col items-center bg-[url('/images/blackjackbg.jpeg')] bg-cover bg-center bg-fixed">
@@ -26,11 +25,9 @@ export default function Home() {
           <div className="w-32 h-px bg-gradient-to-r from-transparent via-amber-500/60 to-transparent mt-1" />
         </div>
 
+        <SlotMachine />
         {/* Game */}
-
-        <ChickenCross/>
-
-        <ToggleGameButton/>
+        <ToggleGameButton />
         {/* <BlackJackGame />
 
 
