@@ -238,7 +238,9 @@ export default function ChickenCross() {
 
     return (
         <div className="flex flex-col items-center gap-4 p-6 select-none" style={{ fontFamily: 'Georgia, serif' }}>
-            <h2 className="text-3xl font-black text-amber-300 tracking-wider">🐔 CHICKEN CROSS</h2>
+            <h2 className="text-3xl font-black text-amber-300 tracking-wider">
+                CHICKEN CROSS
+            </h2>
 
             {/* ── Board ─────────────────────────────────────────────────────────── */}
             <div
