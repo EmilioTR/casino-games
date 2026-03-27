@@ -5,12 +5,14 @@ import PlinkoGame from "../plinkoballs/PlinkoGame";
 import ChickenCross from "../CrossTheRoad/ChickenCross";
 import WelcomeScreen from "./WelcomeScreen";
 import SlotMachine from "../slots/Slotmachine";
+import RouletteGame from "../roulette/RouletteGame";
 
 export default function ToggleGameButton() {
     const [selectedGame, setSelectedGame] = useState(0);
+    const [sharedBalance, setSharedBalance] = useState(500);
 
     const setGame = (choice?: number) => {
-        setSelectedGame(choice?? 1);
+        setSelectedGame(choice ?? 1);
     }
 
     const GAMES: Record<number, React.ReactElement> = {
@@ -18,14 +20,21 @@ export default function ToggleGameButton() {
         1: <BlackJackGame />,
         2: <PlinkoGame />,
         3: <ChickenCross />,
-        4: <SlotMachine />
+        4: <SlotMachine />,
+        5: <RouletteGame balance={sharedBalance} onBalanceChange={setSharedBalance} />,
     }
 
     return (
         <div className="flex flex-col items-center gap-4">
 
             {selectedGame == 0 ? <></> : <div>
-                <div className="flex flex-col items-center gap-1 mb-10">
+                <div
+                    className="flex flex-col items-center gap-1 mb-10"
+                    onClick={() => setGame(0)}
+                    style={{
+                        cursor: 'pointer'
+                    }}
+                >
                     <p className="text-xs uppercase tracking-[0.3em] text-amber-500/70">Welcome to</p>
                     <h1
                         className="text-5xl font-black text-amber-300 tracking-tight drop-shadow-[0_2px_12px_rgba(251,191,36,0.3)]"
@@ -72,6 +81,15 @@ export default function ToggleGameButton() {
                             }`}
                     >
                         Slot Machine
+                    </button>
+                    <button
+                        onClick={() => setSelectedGame(5)}
+                        className={`px-6 py-2 rounded-xl text-sm font-semibold tracking-wide transition-all duration-200 ${selectedGame == 5
+                            ? "bg-amber-700/60 border border-amber-500 text-amber-100 shadow-[0_0_12px_rgba(251,191,36,0.2)]"
+                            : "text-zinc-400 hover:text-amber-200"
+                            }`}
+                    >
+                        Roulette
                     </button>
                 </div>
             </div>}

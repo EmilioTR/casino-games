@@ -442,7 +442,7 @@ export default function SlotMachine() {
                 <div className="relative ml-2 flex-shrink-0" style={{ width: 40, height: 420 }}>
 
                     {/* Base — fixed at bottom center */}
-                    <div className="absolute bottom-4 left-1/2 -translate-x-1/2 w-6 h-6 rounded-full border border-amber-800/60"
+                    <div className="absolute bottom-4 left-1/2 -translate-x-1/2 w-7 h-7 rounded-full border border-amber-800/60"
                         style={{ background: 'radial-gradient(circle at 35% 35%, #92400e, #451a03)' }} />
 
                     {/* Ball + shaft move together as one rigid piece */}
@@ -463,6 +463,8 @@ export default function SlotMachine() {
                             className="w-10 h-10 rounded-full border-2 border-amber-500/60 flex-shrink-0"
                             style={{
                                 background: 'radial-gradient(circle at 35% 35%, #fbbf24, #92400e)',
+                                transform: handlePulled ? 'scale(1.7)' : 'scale(1.2)',
+                                transition: 'transform 0.22s cubic-bezier(0.4,0,0.2,1)',
                                 boxShadow: '0 0 14px rgba(251,191,36,0.4)',
                                 cursor: canPull ? 'pointer' : 'not-allowed',
                             }}

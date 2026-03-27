@@ -11,6 +11,7 @@ const FEATURES = [
     { image: '/images/games/plinko.png', title: 'Plinko', desc: 'Drop the ball. Watch the chaos unfold.', index: 2 },
     { image: '/images/games/chicken cross.png', title: 'Chicken Cross', desc: 'One wrong step and you\'re dinner.', index: 3 },
     { image: '/images/games/slots.png', title: 'Slot Machine', desc: 'Pull the lever to make the coins drop.', index: 4 },
+    { image: '/images/games/roulette.png', title: 'Roulette', desc: 'Spin the wheel to win an eel.', index: 5 },
 ];
 
 const TAGLINES = [
@@ -67,7 +68,7 @@ export default function WelcomeScreen({ onEnter }: WelcomeScreenProps) {
 
             {/* Main card */}
             <div
-                className=" relative rounded-3xl overflow-hidden border border-amber-700/50 shadow-[0_0_80px_rgba(0,0,0,0.8),0_0_40px_rgba(180,120,0,0.1)]"
+                className="px-10 relative rounded-3xl overflow-hidden border border-amber-700/50 shadow-[0_0_80px_rgba(0,0,0,0.8),0_0_40px_rgba(180,120,0,0.1)]"
                 style={{
                     maxWidth: 680,
                     width: '100%',
@@ -156,10 +157,10 @@ export default function WelcomeScreen({ onEnter }: WelcomeScreenProps) {
                                     <div
                                         key={f.title}
                                         onClick={() => isCenter && onEnter(f.index)}
-                                        className="absolute flex flex-col items-center rounded-2xl border overflow-hidden transition-all duration-200"
+                                        className="absolute flex flex-col items-center rounded-2xl border overflow-hidden transition-all duration-200 p-2"
                                         style={{
                                             width: isCenter ? 200 : 160,
-                                            height: isCenter ? 200 : 170,
+                                            height: isCenter ? 270 : 170,
                                             cursor: isCenter ? 'pointer' : 'default',
                                             boxShadow: isCenter
                                                 ? '0 0 24px rgba(251,191,36,0.12)'
@@ -233,7 +234,7 @@ export default function WelcomeScreen({ onEnter }: WelcomeScreenProps) {
                     </div>
 
                     {/* Carousel dots */}
-                    <div className="flex gap-2 -mt-4">
+                    <div className="flex gap-2 mt-4 ">
                         {FEATURES.map((_, i) => (
                             <button key={i} onClick={() => { if (!animating) setActive(i); }}
                                 className="rounded-full transition-all duration-300"
